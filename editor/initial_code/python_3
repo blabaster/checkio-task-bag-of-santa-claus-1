@@ -19,8 +19,8 @@ if __name__ == '__main__':
 
         def gift_generator():
             nonlocal idx
-            for idx, y in enumerate(gifts):
-                yield y
+            for idx, g in enumerate(gifts):
+                yield g
 
         idx, gift_value = 0, None
         choose_good_gift(len(gifts), gift_generator, do_accept)

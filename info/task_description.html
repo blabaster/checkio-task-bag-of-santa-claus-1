@@ -1,23 +1,16 @@
 <p>
-    <i>( Describe task in general )</i>
+    <i>Выбрать из потока чисел заранее известной длинны по возможности наибольшее.</i>
 </p>
 
 <p>
-    Sum two passed ints
-</p>
-
-<p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <strong>Входные данные:</strong><br>
+total_gifts - число подарков в мешке – int<br>
+bag_of_santa_claus - мешок Деда Мороза – generator, returns float (ценность подарка в глазах Вани, положителное)<br>
+accept – принять подарок - callback function
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    <strong>Выходные данные: </strong> Нет. 
 </p>
 
 
@@ -28,17 +21,59 @@
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
+def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
+    i = 0
+    for gift in bag_of_santa_claus():
+        if i == total_gifts // 2:  # no time to wait!
+            accept_gift()
+            return
+        i += 1
+
+
+if __name__ == '__main__':
+    # This part is using only for self-checking and not necessary for auto-testing
+    def gift_priority_post_factum(gifts):
+        def do_accept():
+            nonlocal gift_value
+            if gift_value is None:
+                gift_value = gifts[idx]
+            else:
+                print('Sorry, you made your choice already.')
+
+        def gift_generator():
+            nonlocal idx
+            for idx, y in enumerate(gifts):
+                yield y
+
+        idx, gift_value = 0, None
+        choose_good_gift(len(gifts), gift_generator, do_accept)
+        if gift_value is None:
+            print('Unfortunately, you did not choose anything.')
+            return len(gifts)
+        else:
+            return sum(gift_value < x for x in gifts)
+
+    def check_solution():
+        n = gift_priority_post_factum([0.65, 4.75, 0.21, 0.53, 0.63, 9.99, 0.81, 2.48, 0.3, 0.64])
+        if n < 3:
+            print({0: 'The best gift!', 1: 'Next best gift!', 3: 'Third gift!'}[n])
+        else:
+            print('Only {:n}th gift.'.format(n))
+
+    check_solution()
     </pre>
 </div>
 
 <p class="for_info_only">
-    <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    <strong>Как использовать:</strong>
+</p>
+Например при выборе места катапультирования лётчика из неисправного самолёта – чтобы безопасно приземлиться:)
+<p>
+    <strong>Precondition:</strong>
 </p>
 
 <p>
-    <strong>Precondition:</strong>
-    <i>Constraints for Input</i>
+    10 &gt;= total_gifts &gt; 1000
+    0 &gt; gift
 </p>
+

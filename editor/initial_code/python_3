@@ -33,7 +33,7 @@ if __name__ == '__main__':
     def check_solution():
         n = gift_priority_post_factum([0.65, 4.75, 0.21, 0.53, 0.63, 9.99, 0.81, 2.48, 0.3, 0.64])
         if n < 3:
-            print({0: 'The best gift!', 1: 'Next best gift!', 3: 'Third gift!'}[n])
+            print(('The best gift!', 'Next best gift!', 'Third gift!')[n])
         else:
             print('Only {:n}th gift.'.format(n))
 

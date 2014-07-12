@@ -1,11 +1,40 @@
-def checkio(a, b):
-    """
-        sums two passed arguments
-    """
-    return None
+def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
+    i = 0
+    for gift in bag_of_santa_claus():
+        if i == total_gifts // 2:  # no time to wait!
+            accept_gift()
+            return
+        i += 1
+
 
 if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
-    assert checkio(3, 2) == 5
-    assert checkio(5, 7) == 12
-    print('Done')
+    # This part is using only for self-checking and not necessary for auto-testing
+    def gift_priority_post_factum(gifts):
+        def do_accept():
+            nonlocal gift_value
+            if gift_value is None:
+                gift_value = gifts[idx]
+            else:
+                print('Sorry, you made your choice already.')
+
+        def gift_generator():
+            nonlocal idx
+            for idx, y in enumerate(gifts):
+                yield y
+
+        idx, gift_value = 0, None
+        choose_good_gift(len(gifts), gift_generator, do_accept)
+        if gift_value is None:
+            print('Unfortunately, you did not choose anything.')
+            return len(gifts)
+        else:
+            return sum(gift_value < x for x in gifts)
+
+    def check_solution():
+        n = gift_priority_post_factum([0.65, 4.75, 0.21, 0.53, 0.63, 9.99, 0.81, 2.48, 0.3, 0.64])
+        if n < 3:
+            print({0: 'The best gift!', 1: 'Next best gift!', 3: 'Third gift!'}[n])
+        else:
+            print('Only {:n}th gift.'.format(n))
+
+    check_solution()

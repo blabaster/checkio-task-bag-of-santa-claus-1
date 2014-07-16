@@ -17,37 +17,37 @@
 </p>
 
 <p>
-    <i>Выбрать из потока чисел заранее известной длинны по возможности наибольшее.</i>
+<i>Выбрать из потока чисел заранее известной длинны по 
+возможности наибольшее.</i>
 </p>
 
 <p>
-    <strong>Входные данные:</strong>
+<strong>Входные данные:</strong>
 </p>
-<p>
-   
+<p>  
 total_gifts - число подарков в мешке – int
 </p>
 <p>
-bag - мешок Деда Мороза – generator, returns float (ценность подарка в глазах Вани, положительное)
+bag - мешок Деда Мороза – функция-генератор, возвращает float (ценность 
+подарка в глазах Вани, положительное)
 </p>
 <p>
-accept – принять подарок - callback function
+accept – принять подарок - функция обратного вызова (callback function)
 </p>
 
 <p>
-    <strong>Выходные данные: </strong> Нет. 
+<strong>Выходные данные: </strong> Нет. 
 </p>
-
 
 <div class="for_info_only">
-    <p>
-        <strong>Примеры реализации (они не решают задачу, а только демонстрируют API):</strong>
-    </p>
+<p>
+<strong>Примеры реализации (они только демонстрируют API):</strong>
+</p>
 <p>Первый:</p>
     <pre class="brush: python">
 def choose_good_gift(total_gifts, bag, accept_gift):
     for gift in bag():
-        if gift > 9.:  # I know max(gifts) :)
+        if gift >= 1000000:  # I want million!
             accept_gift()
             return
     </pre>
@@ -61,18 +61,18 @@ def choose_good_gift(total_gifts, bag, accept_gift):
     </pre>
 
 <p class="for_info_only">
-    <strong>Как использовать:</strong>
+<strong>Как использовать:</strong>
 </p>
 Например при выборе места катапультирования лётчика из неисправного 
 самолёта – чтобы безопасно приземлиться :)
 </p>
 <p>
-    <strong>Ограничения на входные данные:</strong>
+<strong>Ограничения на входные данные:</strong>
 </p>
 
 <p>
-    10 &lt;= total_gifts &lt; 1000
+10 &lt;= total_gifts &lt; 1000
 </p>
 <p>
-    0 &lt; gift
+0 &lt; gift
 </p>

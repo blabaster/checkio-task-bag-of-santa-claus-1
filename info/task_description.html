@@ -28,7 +28,7 @@
 total_gifts - число подарков в мешке – int
 </p>
 <p>
-bag_of_santa_claus - мешок Деда Мороза – generator, returns float (ценность подарка в глазах Вани, положителное)
+bag - мешок Деда Мороза – generator, returns float (ценность подарка в глазах Вани, положительное)
 </p>
 <p>
 accept – принять подарок - callback function
@@ -53,30 +53,18 @@ def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
     </pre>
 <p>Второй:</p>
     <pre class="brush: python">
-def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
+def choose_good_gift(total_gifts, bag, accept_gift):
     for i, gift in enumerate(iter(bag_of_santa_claus())):
         if i == total_gifts // 2:  # on the middle
             accept_gift()
             return
     </pre>
-<p>Пример вызова с аргументами:</p>
-    <pre class="brush: python">
-gifts = [0.65, 4.75, 0.21, 0.53, 0.63, 9.99, 0.81, 2.48, 0.3, 0.64]
-
-def gift_generator():
-    yield from gifts
-
-def do_accept():
-    pass
-
-choose_good_gift(len(gifts), gift_generator, do_accept)
-    </pre>
-</div>
 
 <p class="for_info_only">
     <strong>Как использовать:</strong>
 </p>
-Например при выборе места катапультирования лётчика из неисправного самолёта – чтобы безопасно приземлиться:)
+Например при выборе места катапультирования лётчика из неисправного 
+самолёта – чтобы безопасно приземлиться :)
 </p>
 <p>
     <strong>Ограничения на входные данные:</strong>

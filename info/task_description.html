@@ -45,8 +45,8 @@ accept – принять подарок - callback function
     </p>
 <p>Первый:</p>
     <pre class="brush: python">
-def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
-    for gift in bag_of_santa_claus():
+def choose_good_gift(total_gifts, bag, accept_gift):
+    for gift in bag():
         if gift > 9.:  # I know max(gifts) :)
             accept_gift()
             return
@@ -54,7 +54,7 @@ def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
 <p>Второй:</p>
     <pre class="brush: python">
 def choose_good_gift(total_gifts, bag, accept_gift):
-    for i, gift in enumerate(iter(bag_of_santa_claus())):
+    for i, gift in enumerate(iter(bag())):
         if i == total_gifts // 2:  # on the middle
             accept_gift()
             return

@@ -1,3 +1,6 @@
+"""
+Чт. июля 17 17:21:12 MSK 2014
+"""
 def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
     i = 0
     for gift in bag_of_santa_claus():

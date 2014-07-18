@@ -1,43 +1,51 @@
-"""
-Чт. июля 17 17:21:12 MSK 2014
-"""
-def choose_good_gift(total_gifts, bag_of_santa_claus, accept_gift):
-    i = 0
-    for gift in bag_of_santa_claus():
-        if i == total_gifts // 2:  # no time to wait!
-            accept_gift()
-            return
-        i += 1
+def choose_good_gift(total_gifts, bag, accept_gift):
+    for gift in bag():
+        accept_gift()
+        return
 
 
 if __name__ == '__main__':
     # This part is using only for self-checking and not necessary for auto-testing
-    def gift_priority_post_factum(gifts):
+    from random import random, randint, uniform
+
+    def priority_post_factum(gifts):
         def do_accept():
             nonlocal gift_value
             if gift_value is None:
-                gift_value = gifts[idx]
+                if idx < len(gifts):
+                    gift_value = gifts[idx]
+                else:
+                    print('Is that a joke - to say "accept" when'
+                          ' gift wasn\'t taken from the bag?')
             else:
                 print('Sorry, you made your choice already.')
 
         def gift_generator():
             nonlocal idx
-            for idx, g in enumerate(gifts):
-                yield g
+            while idx:
+                idx -= 1
+                yield gifts[idx]
 
-        idx, gift_value = 0, None
-        choose_good_gift(len(gifts), gift_generator, do_accept)
+        idx, gift_value = len(gifts), None
+        choose_good_gift(idx, gift_generator, do_accept)
         if gift_value is None:
             print('Unfortunately, you did not choose anything.')
             return len(gifts)
         else:
             return sum(gift_value < x for x in gifts)
 
-    def check_solution():
-        n = gift_priority_post_factum([0.65, 4.75, 0.21, 0.53, 0.63, 9.99, 0.81, 2.48, 0.3, 0.64])
-        if n < 3:
-            print(('The best gift!', 'Next best gift!', 'Third gift!')[n])
-        else:
-            print('Only {:n}th gift.'.format(n))
+    def check_solution(bagscount):
+        standings = giftscount = bestgifts = 0
+        for i in range(bagscount):
+            gifts_in_bag = randint(10, 1001)
+            giftscount += gifts_in_bag
+            scale = (random() + random()) ** randint(0, 1024)
+            priority = priority_post_factum([uniform(0., scale) for _ in range(gifts_in_bag)])
+            standings += priority
+            bestgifts += not priority
+        print('You do won {:n} best gifts from {:n} bags with {:,} gifts!\n'
+              'It seems like for bags of {:n} gifts -\n'
+              'you would choose the second best gift, silver ;).'
+              .format(bestgifts, bagscount, giftscount, round(1.5 * giftscount / standings)))
 
-    check_solution()
+    check_solution(2000)

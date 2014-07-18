@@ -35,7 +35,7 @@ if __name__ == '__main__':
     def check_solution(bagscount):
         standings = giftscount = bestgifts = 0
         for i in range(bagscount):
-            gifts_in_bag = randint(10, 1001)
+            gifts_in_bag = randint(10, 1000)
             giftscount += gifts_in_bag
             scale = (random() + random()) ** randint(0, 1024)
             priority = priority_post_factum([uniform(0., scale) for _ in range(gifts_in_bag)])

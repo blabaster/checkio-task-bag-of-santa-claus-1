@@ -45,7 +45,7 @@ if __name__ == '__main__':
             bestgifts += not priority
         print('You do won {:n} best gifts from {:n} bags with {:,} gifts!\n'
               'It seems like for bags of {:n} gifts -\n'
-              'you would choose the second best gift, silver ;).'
+              'you would choose the second best gift, silver ;)'
               .format(bestgifts, bagscount, giftscount, round(giftscount / standings) + 1))
 
     check_solution(2000)

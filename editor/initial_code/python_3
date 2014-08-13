@@ -34,18 +34,18 @@ if __name__ == '__main__':
         else:
             return sum(gift_value < x for x in gifts)
 
-    def check_solution(bagscount):
-        standings = giftscount = bestgifts = 0
-        for i in range(bagscount):
+    def check_solution(bag_count):
+        standings = gift_count = best_gifts = 0
+        for i in range(bag_count):
             gifts_in_bag = randint(10, 1000)
-            giftscount += gifts_in_bag
+            gift_count += gifts_in_bag
             scale = (random() + random()) ** randint(0, 1024)
             priority = priority_post_factum([uniform(0., scale) for _ in range(gifts_in_bag)])
             standings += priority
-            bestgifts += not priority
+            best_gifts += not priority
         print('You do won {:n} best gifts from {:n} bags with {:,} gifts!\n'
               'It seems like for bags of {:n} gifts -\n'
               'you would choose the second best gift, silver ;)'
-              .format(bestgifts, bagscount, giftscount, round(giftscount / standings) + 1))
+              .format(best_gifts, bag_count, gift_count, round(gift_count / standings) + 1))
 
     check_solution(2000)

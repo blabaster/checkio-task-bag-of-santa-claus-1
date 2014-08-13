@@ -15,8 +15,8 @@ if __name__ == '__main__':
                 if idx < len(gifts):
                     gift_value = gifts[idx]
                 else:
-                    print('Is that a joke - to say "accept" when'
-                          ' gift wasn\'t taken from the bag?')
+                    print("Is that a joke - to say 'accept' when"
+                          " gift wasn't taken from the bag?")
             else:
                 print('Sorry, you made your choice already.')
 

@@ -1,7 +1,4 @@
 <p>
-    <strong>Bag of Santa Claus</strong>
-</p>
-<p>
     When New Year is coming everybody waits the visit of Santa Claus.
     He comes with a huge bag of gifts, and you can take any.
     But how to make the best choose - so Santa gets them out of the bag one at a time,
@@ -10,30 +7,33 @@
     and you have already refused to pirate hat because hoping to get a saber!
 </p>
 <p>
-    When this happened with John, Dad told him - don't worry,
-    I teach you how to choose a better gift. Did you knew how much gifts in the bag?
+    When this happened with John, Dad told him - "Don't worry,
+    I teach you how to choose a better gift. Did you knew how much gifts in the bag?"
 </p>
 
 <p>
-    <i>Get possibly greatest number from the flow with known length.</i>
+    You are given a number of gifts in a bag.
+    The "bag" is a <a href="https://wiki.python.org/moin/Generators">generator</a> with floats --
+    prices for the gifts.
+    You can iterate this generator but only once and while you iterate the "bag" you can
+    accept a current gift by calling "accept_gift" function which is given as the third argument.
+
 </p>
 
 <p>
-    <strong> Input: </strong>
-</p>
-<p>
-    total_gifts - the number of gifts in the bag, int
-</p>
-<p>
-    bag - generator function returns a float (values of gifts for John,
-    positive)
-</p>
-<p>
-    accept - callback function (call it, if you like gift)
+    Your function will be checked many times with different bags which have various sizes from 10 to 1000 gifts.
+    We count only the best gifts from each bag -- the second place gifts are not for us.
 </p>
 
 <p>
-    <strong> Imprint: </strong> None.
+    <strong> Input: </strong> Three arguments.<br>
+    <strong>total_gifts</strong> - a number of gifts in a bag as an integer.<br>
+    <strong>bag</strong> - a generator that returns a float values of gifts.<br>
+    <strong>accept_gift</strong> - the callback function which you should call to accept gift.
+</p>
+
+<p>
+    <strong> Output: </strong> It does not matter.
 </p>
 
 <div class="for_info_only">
@@ -41,7 +41,6 @@
         <strong> Implementation examples (only to demonstrate the API): </strong>
     </p>
 
-    <p> First: </p>
     <pre class="brush: python">
 def choose_good_gift(total_gifts, bag, accept_gift):
     for gift in bag():
@@ -50,7 +49,6 @@ def choose_good_gift(total_gifts, bag, accept_gift):
             return
     </pre>
 
-    <p> Second: </p>
     <pre class="brush: python">
 def choose_good_gift(total_gifts, bag, accept_gift):
     for i, gift in enumerate(iter(bag())):
@@ -70,4 +68,4 @@ def choose_good_gift(total_gifts, bag, accept_gift):
     <strong>Precondition:</strong><br>
     10 &le; total_gifts &le; 1000<br>
     0 &le; gift<br>
-    Gifts are offered in random order.<br>
+    Gifts are offered in the random order.<br>

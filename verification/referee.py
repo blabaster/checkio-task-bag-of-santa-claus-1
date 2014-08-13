@@ -28,21 +28,46 @@ checkio.referee.cover_codes
 
 from checkio.signals import ON_CONNECT
 from checkio import api
-from checkio.referees.io import CheckiOReferee
+from checkio.referees.code import CheckiORefereeCode
 from checkio.referees import cover_codes
 from checkio.referees import checkers
 
 from tests import TESTS
 
+
+from checkio import api
+
+from checkio.referees.io import CheckiOReferee
+
+REQ = 'req'
+REFEREE = 'referee'
+
+
+class CheckiORefereeCodeScore(CheckiORefereeCode):
+
+
+    def check_current_test(self, data):
+
+        test_result = data["result"]
+        best_gifts, bag_count, gift_count = test_result
+        self.current_test.update(test_result)
+
+        self.current_test["result"] = bool(best_gifts)
+        self.current_test["result_addon"] = "'You do won {:n} best gifts from {:n} bags with {:,} gifts!".format(
+            best_gifts, bag_count, gift_count)
+
+        api.request_write_ext(self.current_test)
+
+        if not self.current_test["result"]:
+            return api.fail(self.current_step, self.get_current_test_fullname())
+        api.success(best_gifts)
+
+
+
 api.add_listener(
     ON_CONNECT,
-    CheckiOReferee(
+    CheckiORefereeCodeScore(
         tests=TESTS,
-        cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
-        },
-        function_name="choose_good_gift"
         # checker=None,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],

@@ -48,4 +48,4 @@ if __name__ == '__main__':
               'you would choose the second best gift, silver ;)'
               .format(best_gifts, bag_count, gift_count, round(gift_count / standings) + 1))
 
-    check_solution(2000)
+    check_solution(100)

@@ -37,12 +37,12 @@ class CheckiORefereeCodeScore(CheckiORefereeCode):
 
     def check_current_test(self, data):
 
-        test_result = data["result"]
+        test_result = data["result"]["code_result"]
         best_gifts, bag_count, gift_count = test_result
-        self.current_test.update(test_result)
+        self.current_test["result_addon"] = test_result
 
         self.current_test["result"] = bool(best_gifts)
-        self.current_test["result_addon"] = "'You do won {:n} best gifts from {:n} bags with {:,} gifts!".format(
+        self.current_test["result_message"] = "You won {:n} best gifts from {:n} bags with {:,} gifts!".format(
             best_gifts, bag_count, gift_count)
 
         api.request_write_ext(self.current_test)

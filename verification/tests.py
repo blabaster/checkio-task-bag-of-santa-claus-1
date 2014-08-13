@@ -81,7 +81,7 @@ RET['code_result'] = check_solution(2000)
 TESTS = {
     "One": [
         {
-            "test_code": {"python-3": py3_code, "python-27": py3_code},
+            "test_code": {"python-3": init_code + py3_code, "python-27": init_code + py3_code},
             "show": {"python-3": "", "python-27": ""},
             "answer": ""
         }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 checkio-task-template
 =====================
 
@@ -115,3 +116,6 @@ It's **not necessary** to change it.
 Further description of this will be added later.
 
 
+=======
+Bag of Santa Claus
+>>>>>>> 2f23faf303c20de60e7287899fe3c378fc7e32aa

@@ -32,32 +32,19 @@ from checkio.referees.code import CheckiORefereeCode
 
 from tests import TESTS
 
-class CheckiORefereeCodeScore(CheckiORefereeCode):
-
-
-    def check_current_test(self, data):
-
-        test_result = data["result"]["code_result"]
-        best_gifts, bag_count, gift_count = test_result
-        self.current_test["result_addon"] = test_result
-
-        self.current_test["result"] = bool(best_gifts)
-        self.current_test["result_message"] = "You won {:n} best gifts from {:n} bags with {:,} gifts!".format(
-            best_gifts, bag_count, gift_count)
-
-        api.request_write_ext(self.current_test)
-
-        if not self.current_test["result"]:
-            return api.fail(self.current_step, self.get_current_test_fullname())
-        api.success(best_gifts)
-
+def checker(data, test):
+    best_gifts, bag_count, gift_count = data.get("code_result", (0, 2000, 20000))
+    if best_gifts >= 750:
+        return True, "You won {:n} best gifts from {:n} bags with {:,} gifts! Gratz!".format(best_gifts, bag_count, gift_count)
+    else:
+        return False, "You won {:n} best gifts from {:n} bags with {:,} gifts! But you need 750+.".format(best_gifts, bag_count, gift_count)
 
 
 api.add_listener(
     ON_CONNECT,
-    CheckiORefereeCodeScore(
+    CheckiORefereeCode(
         tests=TESTS,
-        # checker=None,  # checkers.float.comparison(2)
+        check_result=checker,  # checkers.float.comparison(2)
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]

@@ -34,10 +34,10 @@ from tests import TESTS
 
 def checker(data, test):
     best_gifts, bag_count, gift_count = data.get("code_result", (0, 2000, 20000))
-    if best_gifts >= 750:
+    if best_gifts >= 700:
         return True, "You won {:n} best gifts from {:n} bags with {:,} gifts! Gratz!".format(best_gifts, bag_count, gift_count)
     else:
-        return False, "You won {:n} best gifts from {:n} bags with {:,} gifts! But you need 750+.".format(best_gifts, bag_count, gift_count)
+        return False, "You won {:n} best gifts from {:n} bags with {:,} gifts! But you need 700+.".format(best_gifts, bag_count, gift_count)
 
 
 api.add_listener(

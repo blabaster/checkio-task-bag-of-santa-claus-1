@@ -29,7 +29,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
 
         ext.set_animate_success_slide(function (this_e, options) {
             var $h = $(this_e.setHtmlSlide('<div class="animation-success"><div></div></div>'));
-            this_e.setAnimationHeight(115);
+            this_e.setAnimationHeight(87);
         });
 
         ext.set_animate_slide(function (this_e, data, options) {
@@ -68,8 +68,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210', 'snap.svg_030'],
             if (data.ext) {
                 var userResult = data.out;
                 var result = data.ext["result"];
-                var result_addon = data.ext["result_addon"];
-                var result_message = data.ext["result_message"];
+                var result_message = data.ext["result_addon"];
 
 
 

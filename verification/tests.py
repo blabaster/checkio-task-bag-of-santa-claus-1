@@ -12,7 +12,8 @@ from random import random, randint, uniform
 scale = (random() + random()) ** randint(0, 1024)
 
 standings = gift_count = best_gifts = 0
-for i in range(2000):
+bag_count = 2000
+for i in range(bag_count):
     gifts_in_bag = randint(10, 1000)
     gift_count += gifts_in_bag
 
@@ -23,16 +24,15 @@ for i in range(2000):
         gifts.append(new_gift)
         decision = choose_good_gift(new_gift, gifts_in_bag, i + 1)
         if decision:
-            selected_gift = gift
+            selected_gift = new_gift
             gifts.extend([uniform(0., scale) for _ in range(gifts_in_bag - i - 1)])
             break
-    if gift_value is None:
+    if selected_gift is None:
         priority = len(gifts_in_bag)
     else:
-        priority = sum(gift_value < x for x in gifts)
+        priority = sum(selected_gift < x for x in gifts)
     standings += priority
     best_gifts += not priority
-return best_gifts, bag_count, gift_count
 
 RET['code_result'] = best_gifts, bag_count, gift_count
 """

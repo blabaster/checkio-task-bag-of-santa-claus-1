@@ -28,7 +28,7 @@ for i in range(bag_count):
             gifts.extend([uniform(0., scale) for _ in range(gifts_in_bag - i - 1)])
             break
     if selected_gift is None:
-        priority = len(gifts_in_bag)
+        priority = len(gifts)
     else:
         priority = sum(selected_gift < x for x in gifts)
     standings += priority

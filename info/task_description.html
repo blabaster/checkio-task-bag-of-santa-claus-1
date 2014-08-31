@@ -11,27 +11,29 @@
 </p>
 
 <p>
-    You are given the number of gifts in a bag. The "bag" is a
-    <a href="https://wiki.python.org/moin/Generators">generator</a> with floats --
-    prices for these gifts. You can iterate this generator but only once, and while you iterate the "bag", you can
-    accept a current gift by calling the "accept_gift" function which is given as the third argument.
+    Your function will be called many times in the same environment.
+    For each step you are given a value of the current gift,
+    the quantity if gifts in the current bag and a number of the current gift (counted from 1).
+    For each step you should make a choice to take a gift or not -- True or False.
 
 </p>
 
 <p>
     Your function will be checked repeatedly for different bags containing anywhere from 10 to 1000 gifts. We will count
     only the best gifts from each bag as the second rate gifts are not for us.
+    All calls are running in the same environment, so be careful with globals.
+    You should choose 700+ the best gifts from 2000 bags.
 </p>
 
 <p>
     <strong> Input: </strong> Three arguments.<br>
-    <em>total_gifts</em> - a number of gifts in a bag as an integer.<br>
-    <em>bag</em> - a generator that returns a float values of gifts.<br>
-    <em>accept_gift</em> - the callback function which you should call to accept gift.
+    <em>current_gift</em> - a value of the current gift as an float.<br>
+    <em>gifts_in_bag</em> - the quantity of gifts in a bag as an integer.<br>
+    <em>gift_number</em> - a number of the current gift as an integer (from 1 to gifts_in_bag).<br>
 </p>
 
 <p>
-    <strong> Output: </strong> It does not matter.
+    <strong> Output: </strong> Do you accept the current gift or not as a boolean value.
 </p>
 
 <div class="for_info_only">
@@ -40,19 +42,13 @@
     </p>
 
     <pre class="brush: python">
-def choose_good_gift(total_gifts, bag, accept_gift):
-    for gift in bag():
-        if gift >= 1000000:  # I want million!
-            accept_gift()
-            return
-    </pre>
-
-    <pre class="brush: python">
-def choose_good_gift(total_gifts, bag, accept_gift):
-    for i, gift in enumerate(iter(bag())):
-        if i == total_gifts // 2:  # on the middle
-            accept_gift()
-            return
+def choose_good_gift(current_gift, gifts_in_bag, gift_number):
+    from random import random
+    # coin
+    if random() > 0.5:
+        return True
+    else:
+        return False
     </pre>
 </div>
 
@@ -65,6 +61,6 @@ def choose_good_gift(total_gifts, bag, accept_gift):
 
 <p>
     <strong>Precondition:</strong><br>
-    10 &le; total_gifts &le; 1000<br>
-    0 &le; gift<br>
+    10 &le; gifts_in_bag &le; 1000<br>
+    0 &le; current_gift<br>
     Gifts are offered in the random order.<br>
